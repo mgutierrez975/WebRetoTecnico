@@ -38,27 +38,7 @@ namespace WebRetoTecnico.Controllers
         {
             return View();
         }
-        //[HttpPut]
-        //public  IActionResult Login(string correo, string clave)
-        //{
-
-        //    bool result =  _usuarioService.GetUsuario(correo, clave);
-
-        //    if (true)
-        //    {
-
-        //    }
-
-        //    return View();
-
-        //    //Usuario result = _usuarioService.GetUsuario(modelo);
-        //   //if (result == null)
-        //    //{                
-        //    //    return View();
-        //    //}
-        //    //return RedirectToAction("Index", "Home");
-        //}
-
+        
         [HttpGet]
         public async Task<IActionResult> listaSedesOlimpicas()
         {
@@ -72,6 +52,20 @@ namespace WebRetoTecnico.Controllers
             List<ComplejosDeportivos> lista = await _complejosDeportivosRepository.Lista();
             return StatusCode(StatusCodes.Status200OK, lista);
             //return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> guardarSedesOlimpicas([FromBody] SedesOlimpicas modelo)
+        {
+            bool result = await _sedesOlimpicasRepository.Guardar(modelo);
+            if (result)
+            {
+                return StatusCode(StatusCodes.Status200OK, new { valor = result, msg = "Ok" });
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { valor = result, msg = "error" });
+            }
         }
 
         [HttpPost]
@@ -102,10 +96,39 @@ namespace WebRetoTecnico.Controllers
             }
         }
 
+        [HttpPut]
+        public async Task<IActionResult> editarSedesOlimpicas([FromBody] SedesOlimpicas modelo)
+        {
+            
+            bool result = await _sedesOlimpicasRepository.Editar(modelo);
+            if (result)
+            {
+                return StatusCode(StatusCodes.Status200OK, new { valor = result, msg = "Ok" });
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { valor = result, msg = "error" });
+            }
+        }
+
         [HttpDelete]
         public async Task<IActionResult> eliminarComplejosDeportivos(int i_ComplejoId)
         {
             bool result = await _complejosDeportivosRepository.Eliminar(i_ComplejoId);
+            if (result)
+            {
+                return StatusCode(StatusCodes.Status200OK, new { valor = result, msg = "Ok" });
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { valor = result, msg = "error" });
+            }
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> eliminarSedesOlimpicas(int i_SedeId)
+        {
+            bool result = await _sedesOlimpicasRepository.Eliminar(i_SedeId);
             if (result)
             {
                 return StatusCode(StatusCodes.Status200OK, new { valor = result, msg = "Ok" });

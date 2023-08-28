@@ -39,19 +39,82 @@ namespace WebRetoTecnico.Repositorios.Implementacion
             return lista;  
         }
 
-        public Task<bool> Editar(SedesOlimpicas modelo)
+        public async Task<bool> Guardar(SedesOlimpicas modelo)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var conexion = new SqlConnection(_conexionSql))
+                {
+                    conexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_GuardarSedesOlimpicas", conexion);
+                    cmd.Parameters.AddWithValue("v_nombre", modelo.v_Nombre);
+                    cmd.Parameters.AddWithValue("i_numerocomplejo", modelo.i_NumeroComplejo);
+                    cmd.Parameters.AddWithValue("d_presupuestoaproximado", modelo.d_PresupuestoAproximado);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    int filas = await cmd.ExecuteNonQueryAsync();
+                    if (filas > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex) { throw ex; }
         }
 
-        public Task<bool> Eliminar(int id)
+        public async Task<bool> Editar(SedesOlimpicas modelo)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var conexion = new SqlConnection(_conexionSql))
+                {
+                    conexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_EditarSedesOlimpicas", conexion);
+                    cmd.Parameters.AddWithValue("i_sedeid", modelo.i_SedeId);
+                    cmd.Parameters.AddWithValue("v_nombre", modelo.v_Nombre);
+                    cmd.Parameters.AddWithValue("i_numerocomplejo", modelo.i_NumeroComplejo);
+                    cmd.Parameters.AddWithValue("d_presupuestoaproximado", modelo.d_PresupuestoAproximado);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    int filas = await cmd.ExecuteNonQueryAsync();
+                    if (filas > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex) { throw ex; }
         }
 
-        public Task<bool> Guardar(SedesOlimpicas modelo)
+        public async Task<bool> Eliminar(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var conexion = new SqlConnection(_conexionSql))
+                {
+                    conexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_EliminarSedesOlimpicas", conexion);
+                    cmd.Parameters.AddWithValue("i_sedeid", id);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    int filas = await cmd.ExecuteNonQueryAsync();
+                    if (filas > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex) { throw ex; }
+
         }
 
     }

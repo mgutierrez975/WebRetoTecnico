@@ -176,7 +176,7 @@ $(document).on("click", ".boton-eliminar-complejodeportivo", function () {
 
     Swal.fire({
         title: "Esta seguro?",
-        text: `Eliminar empleado "${_complejoDeportivo.v_TipoComplejo}"`,
+        text: `Eliminar Complejo Deportivo "${_complejoDeportivo.v_TipoComplejo}"`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
