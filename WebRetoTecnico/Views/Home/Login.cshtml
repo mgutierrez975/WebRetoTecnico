@@ -1,0 +1,9 @@
+﻿@model WebRetoTecnico.Models.Usuario
+
+<form asp-action="Login" asp-controller="Home" method="post">
+    <label>Correo:</label>
+    <input type="text" asp-for="v_Correo" />
+    <label>Contraseña:</label>
+    <input type="password" asp-for="v_Clave" />
+    <input type="submit" value="Iniciar Sesión" />
+</form>

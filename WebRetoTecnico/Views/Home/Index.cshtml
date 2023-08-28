@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row justify-content-center">
+
+    <div class="col-10">
+
+        <div class="alert alert-info" role="alert">
+            Crud Complejos Deportivos
+        </div>
+        <button type="button" class="btn btn-success btn-sm boton-nuevo-complejodeportivo">Crear Nuevo</button>
+
+        <table class="table table-striped" id="tablaComplejoDeportivo">
+            <thead>
+                <tr>
+                    <th>Tipo Complejo</th>
+                    <th>Nombre Sede</th>
+                    <th>Localización</th>
+                    <th>Jefe Organización</th>
+                    <th>Area Total Ocupada</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalComplejoDeportivo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal Complejo Deportivo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="mb-3">
+                    <label class="form-label">Tipo Complejo</label>
+                    <input type="text" class="form-control" id="txtTipoComplejo" autocomplete="off">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Sede Olimpica</label>
+                    <select class="form-select" id="cboSede"></select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Localizacion</label>
+                    <input type="text" class="form-control" id="txtLocalizacion" autocomplete="off">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Jefe Organizacion</label>
+                    <input type="text" class="form-control" id="txtJefeOrganizacion">
+                </div> 
+
+                <div class="mb-3">
+                    <label class="form-label">Area Total Ocupada</label>
+                    <input type="text" class="form-control" id="txtAreaTotalOcupada">
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary boton-guardar-cambios-complejodeportivo">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/index.js"></script>
+}
